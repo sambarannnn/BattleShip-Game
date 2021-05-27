@@ -109,13 +109,15 @@ class BattleShip{
                 size = 2;
             }
             System.out.println("Enter the coordinates of the " + ship + "(" + size + " cells):");
-            System.out.println(player);
+            //System.out.println(player);
             input = s.nextLine();
             String[] pos = input.split("\\s");
             int r1 = pos[0].charAt(0) - 64;
             int r2 = pos[1].charAt(0) - 64;
             int c1 = Integer.parseInt(pos[0].substring(1));
             int c2 = Integer.parseInt(pos[1].substring(1));
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             String symbol;
             switch (count) {
                 case 0:
@@ -282,10 +284,14 @@ class BattleShip{
     protected void Driver(){
         Scanner s = new Scanner(System.in);
         //display(P1_GameBoard);
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         System.out.println("Player 1, place your ships on the game field");
         input(P1_GameBoard, 1);
         System.out.println("Press Enter and pass the move to another player");
         s.nextLine();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         System.out.println("Player 2, place your ships to the game field");
         input(P2_GameBoard, 2);
 
@@ -295,6 +301,8 @@ class BattleShip{
         do {
             System.out.println("Press Enter and pass the move to another player");
             s.nextLine();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             if(player == 1) {
                 display(P2_FogBoard);
                 System.out.println("---------------------");
@@ -311,6 +319,8 @@ class BattleShip{
                 result = Battle(P1_GameBoard, P1_FogBoard, 1);
                 player = 1;
             }
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         } while(result != 1);
     }
 }
